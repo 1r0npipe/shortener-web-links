@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
 jobs:
-  yamllint:
+  yaml-lint:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -16,7 +16,7 @@ jobs:
         file_or_dir: ./.golangci.yml
     ignore: |
       ./
-  lint:
+  go-lint:
     runs-on: ubuntu-latest
     steps:
       - name: Setup Go

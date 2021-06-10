@@ -9,11 +9,10 @@ jobs:
   yaml-lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: yaml-lint
-      uses: ibiqlik/action-yamllint@v3
+    - name: Run action
+      uses: jacobtomlinson/gha-lint-yaml@master
       with:
-        file_or_dir: ./.golangci.yml
+        path: ./.golangci.yml
   go-lint:
     runs-on: ubuntu-latest
     steps:

@@ -7,6 +7,14 @@ on:
     branches: [ main ]
 
 jobs:
+  lintAllTheThings:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: yaml-lint
+      uses: ibiqlik/action-yamllint@v3
+      with:
+        file_or_dir: ./*.yaml
   lint:
     runs-on: ubuntu-latest
     steps:

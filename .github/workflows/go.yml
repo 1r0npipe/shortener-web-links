@@ -7,6 +7,8 @@ on:
     branches: [ main ]
 
 jobs:
+  name: Yaml Lint
+  on: [push]
   lintAllTheThings:
     runs-on: ubuntu-latest
     steps:
@@ -14,7 +16,7 @@ jobs:
     - name: yaml-lint
       uses: ibiqlik/action-yamllint@v3
       with:
-        file_or_dir: ./*.yaml
+        file_or_dir: .
   lint:
     runs-on: ubuntu-latest
     steps:

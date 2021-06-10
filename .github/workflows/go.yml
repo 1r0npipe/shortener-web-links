@@ -6,13 +6,7 @@ on:
   pull_request:
     branches: [ main ]
 jobs:
-  yaml-lint:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Run action
-      uses: jacobtomlinson/gha-lint-yaml@master
-      with:
-        path: /api/test.yaml
+
   go-lint:
     runs-on: ubuntu-latest
     steps:

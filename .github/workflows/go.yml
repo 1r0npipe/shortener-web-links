@@ -13,7 +13,7 @@ jobs:
     - name: yaml-lint
       uses: ibiqlik/action-yamllint@v3
       with:
-        file_or_dir: ./.golang.yml
+        file_or_dir: ./.golangci.yml
   lint:
     runs-on: ubuntu-latest
     steps:

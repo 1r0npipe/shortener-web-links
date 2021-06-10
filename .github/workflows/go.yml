@@ -13,7 +13,14 @@ jobs:
     - name: yaml-lint
       uses: ibiqlik/action-yamllint@v3
       with:
-        file_or_dir: ./
+        file_or_dir: ./.golang.yml
+    config_data: |
+      extends: default
+      rules:
+        new-line-at-end-of-file:
+          level: warning
+        trailing-spaces:
+          level: warning
   lint:
     runs-on: ubuntu-latest
     steps:

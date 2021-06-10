@@ -12,7 +12,7 @@ jobs:
     - name: Run action
       uses: jacobtomlinson/gha-lint-yaml@master
       with:
-        path: ./.golangci.yml
+        path: .golangci.yml
   go-lint:
     runs-on: ubuntu-latest
     steps:

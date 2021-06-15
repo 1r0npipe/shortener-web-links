@@ -13,7 +13,6 @@ var (
 
 type Config struct {
 	Server struct {
-		Host string `yaml:"host"`
 		Port string `yaml:"port"`
 		Timeout  int  `yaml:"timeout"`
 	} `yaml:"server"`

@@ -3,5 +3,11 @@ package main
 import "log"
 
 func main() {
-	log.Default()
+	flag.Init()
+
+	config, err := config.ReadNewConfig()
+	if err != nil {
+		log.Fatal("Can't read config file")
+	}
+	
 }

@@ -30,7 +30,6 @@ func main() {
 	signal.Notify(osSig,
 		syscall.SIGINT,
 		syscall.SIGTERM)
-	
 
 	router := gin.Default()
 	router.GET("/healthz", handler.CheckHealth)

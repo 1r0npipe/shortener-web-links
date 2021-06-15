@@ -2,8 +2,8 @@ package config
 
 import (
 	"errors"
-	"io/ioutil"
 	"gopkg.in/yaml.v3"
+	"io/ioutil"
 )
 
 var (
@@ -13,8 +13,8 @@ var (
 
 type Config struct {
 	Server struct {
-		Port string `yaml:"port"`
-		Timeout  int  `yaml:"timeout"`
+		Port    string `yaml:"port"`
+		Timeout int    `yaml:"timeout"`
 	} `yaml:"server"`
 }
 

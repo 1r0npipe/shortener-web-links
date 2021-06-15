@@ -26,14 +26,25 @@ func main() {
 	if err != nil {
 		log.Fatal("Can't read config file")
 	}
+	// override the port if provided at the CLI
+	if flags.Port != "" {
+		config.Server.Port = flags.Port
+	}
 	osSig := make(chan os.Signal, 1)
 	signal.Notify(osSig,
 		syscall.SIGINT,
 		syscall.SIGTERM)
 
-	router := gin.Default()
-	router.GET("/healthz", handler.CheckHealth)
+	//router := gin.Default()
+	router := gin.New()
 
+	router.GET("/healthz", handler.CheckHealth)
+	// TODO:
+	router.GET("/link", handler.GetNewLink)
+	router.GET("/link/:{id}", handler.GetLinkById)
+	router.GET("/stat/:{id}", handler.GetStatById)
+
+	// TODO:
 	go func() {
 		err := router.Run(":" + config.Server.Port)
 		if err != nil {

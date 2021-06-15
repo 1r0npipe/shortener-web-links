@@ -11,3 +11,19 @@ func CheckHealth(c *gin.Context) {
 		"status": "OK",
 	})
 }
+
+func GetNewLink(c *gin.Context) {
+
+}
+
+func GetLinkById(c *gin.Context) {
+
+}
+
+func GetStatById(c *gin.Context) {
+
+}
+
+func ForwardByLink(c *gin.Context) {
+
+}

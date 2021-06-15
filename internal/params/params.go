@@ -15,7 +15,7 @@ type Params struct {
 
 var (
 	FileConfig  = flag.String("fileConfig", "", "define the file with config")
-	Port        = flag.String("port", "8080", "Define port")
+	Port        = flag.String("port", "", "Define port")
 	Timeout     = flag.Int("timeout", 10, "Define timeout")
 	HelpMessage = `This is the help message, please use flags properly:
 	--help: for this help message

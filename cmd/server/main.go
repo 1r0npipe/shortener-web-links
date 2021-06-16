@@ -40,10 +40,9 @@ func main() {
 
 	router.GET("/healthz", handler.CheckHealth)
 	// TODO:
-	router.GET("/link", handler.GetNewLink)
+	router.POST("/link", handler.GetNewLink)
 	router.GET("/link/:{id}", handler.GetLinkById)
 	router.GET("/stat/:{id}", handler.GetStatById)
-
 	// TODO:
 	go func() {
 		err := router.Run(":" + config.Server.Port)

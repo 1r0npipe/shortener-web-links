@@ -16,14 +16,12 @@ func GetNewLink(c *gin.Context) {
 
 }
 
-func GetLinkById(c *gin.Context) {
-
+func RedirectByShortUrl(c *gin.Context) {
+	// shortUrl := c.Param("shortUrl")
+	// itirialUrl := retriveUrl(shortUrl)
+	// c.Redirect(302, initialUrl)
 }
 
 func GetStatById(c *gin.Context) {
-
-}
-
-func ForwardByLink(c *gin.Context) {
 
 }

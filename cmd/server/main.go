@@ -39,10 +39,10 @@ func main() {
 	router := gin.New()
 
 	router.GET("/healthz", handler.CheckHealth)
+	router.POST("/v1/link", handler.GetNewLink)
 	// TODO:
-	router.POST("/link", handler.GetNewLink)
-	router.GET("/link/:{id}", handler.GetLinkById)
-	router.GET("/stat/:{id}", handler.GetStatById)
+	router.GET("/v1/:shortUrl", handler.RedirectByShortUrl)
+	router.GET("/v1/stat/:{id}", handler.GetStatById)
 	// TODO:
 	go func() {
 		err := router.Run(":" + config.Server.Port)

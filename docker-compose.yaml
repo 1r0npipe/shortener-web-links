@@ -12,11 +12,11 @@ services:
      - REDIS_REPLICATION_MODE=master
     networks:
       node_net:
-        ipv4_address: 192.168.1.4
+        ipv4_address: 172.16.1.4
 # networking for the Redis container
 networks:
   node_net:
     ipam:
       driver: default
       config:
-        - subnet: 192.168.1.0/24
+        - subnet: 172.16.1.0/24

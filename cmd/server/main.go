@@ -39,7 +39,7 @@ func main() {
 	router := gin.New()
 
 	router.GET("/healthz", handler.CheckHealth)
-	router.POST("/v1/link", handler.GetNewLink)
+	router.POST("/v1/link", handler.GenerateNewLink)
 	// TODO:
 	router.GET("/v1/:shortUrl", handler.RedirectByShortUrl)
 	router.GET("/v1/stat/:{id}", handler.GetStatById)

@@ -32,6 +32,5 @@ func GenerateShortUrl(input string) (string, error) {
 	if result == "error" {
 		return "", ErrNoEncodePossible
 	}
-	fmt.Println(result)
-	return result[:8], nil
+	return result, nil
 }

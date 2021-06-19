@@ -4,9 +4,8 @@ import (
 	"crypto/sha256"
 	"errors"
 	"fmt"
-	"math/big"
-
 	"github.com/itchyny/base58-go"
+	"math/big"
 )
 
 var ErrNoEncodePossible = errors.New("not possible to encode!")
@@ -35,5 +34,4 @@ func GenerateShortUrl(input string) (string, error) {
 	}
 	fmt.Println(result)
 	return result[:8], nil
-
 }

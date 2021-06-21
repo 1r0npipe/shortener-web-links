@@ -8,7 +8,7 @@ import (
 
 type Link struct {
 	Url *string `json:"url"`
-	Ttl *int	`json:"ttl,omitempty"`
+	Ttl *int    `json:"ttl,omitempty"`
 }
 
 func CheckHealth(c *gin.Context) {
@@ -26,7 +26,7 @@ func GenerateNewLink(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, gin.H{
 		"got_url": link.Url,
-		"ttl": link.Ttl,
+		"ttl":     link.Ttl,
 	})
 
 }

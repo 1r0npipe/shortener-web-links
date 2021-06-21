@@ -17,8 +17,8 @@ type Config struct {
 		Timeout int    `yaml:"timeout"`
 	} `yaml:"server"`
 	DB struct {
-		Address string `yaml:"dbAddress"`
-		Port string `yaml:"dbPort"`
+		Address  string `yaml:"dbAddress"`
+		Port     string `yaml:"dbPort"`
 		Username string `yaml:"dbUsername"`
 		Password string `yaml:"dbpasswor"`
 	} `yaml:"db"`

@@ -22,13 +22,13 @@ func main() {
 		log.Fatal("Can't read the flags properly")
 	}
 	fmt.Println(flags)
-	config, err := config.ReadNewConfig(flags.FileConfig)
+	configData, err := config.ReadNewConfig(flags.FileConfig)
 	if err != nil {
 		log.Fatal("Can't read config file")
 	}
 	// override the port if provided at the CLI
 	if flags.Port != "" {
-		config.Server.Port = flags.Port
+		configData.Server.Port = flags.Port
 	}
 	osSig := make(chan os.Signal, 1)
 	signal.Notify(osSig,
@@ -42,17 +42,17 @@ func main() {
 	router.POST("/v1/link", handler.GenerateNewLink)
 	// TODO:
 	router.GET("/v1/:shortUrl", handler.RedirectByShortUrl)
-	router.GET("/v1/stat/:{id}", handler.GetStatById)
+	router.GET("/v1/stat/:shortUrl", handler.GetStatById)
 	// TODO:
 	go func() {
-		err := router.Run(":" + config.Server.Port)
+		err := router.Run(":" + configData.Server.Port)
 		if err != nil {
 			log.Fatal("can't start server")
 		}
 	}()
 	<-osSig
 	log.Printf("shutting down ...\n")
-	_, cancelFunc := context.WithTimeout(context.Background(), time.Duration(config.Server.Timeout)*time.Second)
+	_, cancelFunc := context.WithTimeout(context.Background(), time.Duration(configData.Server.Timeout)*time.Second)
 	defer cancelFunc()
 	log.Printf("the service has been down...")
 

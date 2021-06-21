@@ -3,13 +3,12 @@ package handler
 import (
 	"net/http"
 
-	"fmt"
-
 	"github.com/gin-gonic/gin"
 )
 
 type Link struct {
 	Url *string `json:"url"`
+	Ttl *int	`json:"ttl,omitempty"`
 }
 
 func CheckHealth(c *gin.Context) {
@@ -19,15 +18,15 @@ func CheckHealth(c *gin.Context) {
 }
 
 func GenerateNewLink(c *gin.Context) {
-	var url Link
-	err := c.BindJSON(&url)
+	var link *Link
+	err := c.BindJSON(&link)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, "ERROR")
 		return
 	}
-	fmt.Printf("URL to store: %+v", *url.Url)
 	c.JSON(http.StatusOK, gin.H{
-		"got_url": url.Url,
+		"got_url": link.Url,
+		"ttl": link.Ttl,
 	})
 
 }

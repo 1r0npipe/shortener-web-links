@@ -16,6 +16,12 @@ type Config struct {
 		Port    string `yaml:"port"`
 		Timeout int    `yaml:"timeout"`
 	} `yaml:"server"`
+	DB struct {
+		Address string `yaml:"dbAddress"`
+		Port string `yaml:"dbPort"`
+		Username string `yaml:"dbUsername"`
+		Password string `yaml:"dbpasswor"`
+	} `yaml:"db"`
 }
 
 func ReadNewConfig(configPath string) (*Config, error) {

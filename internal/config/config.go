@@ -7,7 +7,6 @@ import (
 )
 
 var (
-	ErrFileRead   = errors.New("can't read config file")
 	ErrDecodeYAML = errors.New("can't decode yaml file")
 )
 
@@ -28,7 +27,7 @@ func ReadNewConfig(configPath string) (*Config, error) {
 	config := &Config{}
 	file, err := ioutil.ReadFile(configPath)
 	if err != nil {
-		return nil, ErrFileRead
+		return nil, err
 	}
 	if err := yaml.Unmarshal(file, config); err != nil {
 		return nil, ErrDecodeYAML

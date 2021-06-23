@@ -5,10 +5,9 @@ import (
 )
 
 type Item struct {
-	Ref   uint
 	Short string
 	Long  string
-	Ttl   int64
+	TTL   uint
 }
 type Info struct {
 	mu   sync.RWMutex

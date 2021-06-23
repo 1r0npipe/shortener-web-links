@@ -9,5 +9,7 @@ RUN GOOS=linux GOARCH=amd64 CGO_ENABLED=0 \
 
 ### we are using another container to use for application
 FROM scratch
+#RUN mkdir -p /app
 COPY --from=builder /app /app
-ENTRYPOINT ["/web-shortener","-config=./config.yaml"]
+WORKDIR /app
+CMD ["/web-shortener","-fileConfig=./config.yaml"]

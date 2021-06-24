@@ -8,6 +8,7 @@ type Item struct {
 	Short string
 	Long  string
 	TTL   uint
+	Count uint
 }
 type Info struct {
 	mu   sync.RWMutex

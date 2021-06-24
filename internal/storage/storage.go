@@ -7,7 +7,7 @@ type Storage struct {
 
 // The interface to work with external storage solution
 // it is like abstruction layer when you need to add, delete or get data from/to
-// also will try to impletent cleanup - auto process of cleaning expired data
+// also will try to implement the cleanup - auto process of cleaning expired data
 type StorageManager interface {
 	// Get data by key from storage: return found data or error
 	Get(key string) (model.Item, error)

@@ -2,7 +2,6 @@ server:
   port: 8080
   exprire: 60
 db:
-  address: localhost
-  port: 6137
-  username: redis
-  password: redis
+  address: 'localhost:6379'
+  username: 'redis'
+  password: 'redis'

@@ -7,8 +7,9 @@ import (
 )
 
 type Link struct {
-	URL *string `json:"url"`
-	TTL *int    `json:"ttl,omitempty"`
+	URL    *string `json:"URL"`
+	UserID *string `json:"userID"`
+	TTL    *int    `json:"TTL,omitempty"`
 }
 
 func CheckHealth(c *gin.Context) {
@@ -24,11 +25,12 @@ func GenerateNewLink(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, "ERROR")
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{
-		"got_url": link.URL,
-		"ttl":     link.TTL,
-	})
-
+	
+	// c.JSON(http.StatusOK, gin.H{
+	// 	"got_url": link.URL,
+	// 	"ttl":     link.TTL,
+	// })
+	
 }
 
 func RedirectByShortUrl(c *gin.Context) {

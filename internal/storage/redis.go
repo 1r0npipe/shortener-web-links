@@ -3,9 +3,9 @@ package storage
 import (
 	"encoding/json"
 	"errors"
-
 	"github.com/1r0npipe/shortener-web-links/internal/model"
 	"github.com/go-redis/redis"
+	"time"
 )
 
 type ClientRedis struct {
@@ -20,10 +20,10 @@ type Options struct {
 
 var (
 	DefaultOptions = Options{
-	Addr: "localhost:6379",
-	DB:   0,
-	
-	}	
+		Addr:     "localhost:6379",
+		Password: "RedisPassword",
+		DB:       0,
+	}
 	ErrNotFound = errors.New("item not found in Redis")
 )
 
@@ -31,6 +31,9 @@ func (c *ClientRedis) New(option Options) (ClientRedis, error) {
 	result := ClientRedis{}
 	if option.Addr == "" {
 		option.Addr = DefaultOptions.Addr
+	}
+	if option.Password == "" {
+		option.Password = DefaultOptions.Password
 	}
 	client := redis.NewClient(&redis.Options{
 		Addr:     option.Addr,
@@ -64,6 +67,14 @@ func (c *ClientRedis) Get(key string) (*model.Item, error) {
 }
 
 func (c *ClientRedis) Put(key string, m model.Item) error {
+	data, err := json.Marshal(m)
+	if err != nil {
+		return err
+	}
+	err = c.red.Set(key, string(data), time.Duration(m.TTL)*time.Hour).Err()
+	if err != nil {
+		return err
+	}
 
 	return nil
 }

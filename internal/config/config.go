@@ -17,9 +17,8 @@ type Config struct {
 	} `yaml:"server"`
 	DB struct {
 		Address  string `yaml:"dbAddress"`
-		Port     string `yaml:"dbPort"`
 		Username string `yaml:"dbUsername"`
-		Password string `yaml:"dbpasswor"`
+		Password string `yaml:"dbPassword"`
 	} `yaml:"db"`
 }
 

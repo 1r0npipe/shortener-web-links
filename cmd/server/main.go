@@ -12,10 +12,21 @@ import (
 	"github.com/1r0npipe/shortener-web-links/internal/config"
 	"github.com/1r0npipe/shortener-web-links/internal/handler"
 	"github.com/1r0npipe/shortener-web-links/internal/params"
+	"github.com/1r0npipe/shortener-web-links/internal/storage"
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 )
 
 func main() {
+	logger,err := zap.NewProduction()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer logger.Sync()
+
+	slog := logger.Sugar()
+	slog.Info("Initializin the configuration ...")
+
 	flags, err := params.Init()
 	if err != nil {
 		fmt.Println(params.HelpMessage)
@@ -29,6 +40,13 @@ func main() {
 	// override the port if provided at the CLI
 	if flags.Port != "" {
 		configData.Server.Port = flags.Port
+	}
+	redisCl := storage.ClientRedis{}
+	// imported but not used
+	redisDB, err := redisCl.New(storage.DefaultOptions)
+
+	if err != nil {
+		slog.Error(err)
 	}
 	osSig := make(chan os.Signal, 1)
 	signal.Notify(osSig,

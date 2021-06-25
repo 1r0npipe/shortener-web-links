@@ -49,15 +49,12 @@ func main() {
 		syscall.SIGINT,
 		syscall.SIGTERM)
 
-	//router := gin.Default()
 	router := gin.New()
 
 	router.GET("/healthz", handler.CheckHealth)
 	router.POST("/v1/link", handler.GenerateNewLink)
 	router.GET("/v1/:shortUrl", handler.RedirectByShortUrl)
-	// TODO:
-	// router.GET("/v1/stat/:shortUrl", handler.GetStatById)
-	// TODO:
+	router.GET("/v1/stat/:shortUrl", handler.GetStatById)
 	go func() {
 		err := router.Run(":" + configData.Server.Port)
 		if err != nil {

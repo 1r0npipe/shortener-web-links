@@ -11,9 +11,9 @@ import (
 )
 
 type Link struct {
-	URL    string `json:"url"`
-	UserID string `json:"userID"`
-	TTL    int    `json:"ttl,omitempty"`
+	URL    *string `json:"url"`
+	UserID *string `json:"userID"`
+	TTL    *int    `json:"ttl,omitempty"`
 }
 
 
@@ -44,14 +44,15 @@ func GenerateNewLink(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, "Can't parse JSON from body")
 		return
 	}
-	shortURL, err := generator.GenerateShortUrl(link.URL, link.UserID)
+	shortURL, err := generator.GenerateShortUrl(*link.URL, *link.UserID)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, err)
 		return
 	}
-	m.Long = link.URL
-	m.Short = shortURL
-	m.TTL = uint(link.TTL)
+	m.FullLink = *link.URL
+	m.ShortLink = shortURL
+	m.TTL = uint(*link.TTL)
+	m.UserID = *link.UserID
 	m.Count = 0
 	err = redisDB.Put(shortURL, m)
 	if err != nil {

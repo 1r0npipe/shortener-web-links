@@ -54,8 +54,8 @@ func main() {
 
 	router.GET("/healthz", handler.CheckHealth)
 	router.POST("/v1/link", handler.GenerateNewLink)
+	router.GET("/v1/:shortUrl", handler.RedirectByShortUrl)
 	// TODO:
-	// router.GET("/v1/:shortUrl", handler.RedirectByShortUrl)
 	// router.GET("/v1/stat/:shortUrl", handler.GetStatById)
 	// TODO:
 	go func() {

@@ -3,5 +3,5 @@ server:
   exprire: 60
 db:
   address: 'localhost:6379'
-  username: 'redis'
-  password: 'redis'
+  username: ''
+  password: 'RedisPassword'

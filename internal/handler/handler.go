@@ -102,7 +102,14 @@ func RedirectByShortUrl(c *gin.Context) {
 	count := int64(m.Count)
 	atomic.AddInt64(&count, 1)
 	m.Count = uint(count)
-	redisDB.Put(shortUrl, *m)
+	err = redisDB.Put(shortUrl, *m)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"status": "error",
+			"msg":    err,
+		})
+		return
+	}
 	c.Redirect(http.StatusTemporaryRedirect, m.FullLink)
 	c.Abort()
 }

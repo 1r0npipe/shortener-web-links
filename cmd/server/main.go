@@ -20,7 +20,12 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	defer logger.Sync()
+	defer func() {
+		err := logger.Sync()
+		if err != nil {
+			panic(err)
+		}
+	}()
 
 	slog := logger.Sugar()
 	slog.Info("Initializin the configuration ...")

@@ -16,7 +16,7 @@ import (
 )
 
 func main() {
-	logger,err := zap.NewProduction()
+	logger, err := zap.NewProduction()
 	if err != nil {
 		panic(err)
 	}
@@ -39,7 +39,6 @@ func main() {
 	if flags.Port != "" {
 		configData.Server.Port = flags.Port
 	}
-
 
 	if err != nil {
 		slog.Error(err)

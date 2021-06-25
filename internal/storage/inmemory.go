@@ -1,9 +1,10 @@
 package storage
 
 import (
-	"sync"
 	"github.com/1r0npipe/shortener-web-links/internal/model"
+	"sync"
 )
+
 type Info struct {
 	mu   sync.RWMutex
 	link map[string]*model.Item

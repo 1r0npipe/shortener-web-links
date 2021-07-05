@@ -25,8 +25,8 @@ func base58Enc(input []byte) string {
 	return string(encoded)
 }
 
-func GenerateShortUrl(input string) (string, error) {
-	urlHashB := applySha256(input)
+func GenerateShortUrl(input string, userID string) (string, error) {
+	urlHashB := applySha256(input + userID)
 	generatedLine := new(big.Int).SetBytes(urlHashB).Uint64()
 	result := base58Enc([]byte(fmt.Sprintf("%d", generatedLine)))
 	if result == "error" {

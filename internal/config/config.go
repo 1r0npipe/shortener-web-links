@@ -7,7 +7,6 @@ import (
 )
 
 var (
-	ErrFileRead   = errors.New("can't read config file")
 	ErrDecodeYAML = errors.New("can't decode yaml file")
 )
 
@@ -17,10 +16,9 @@ type Config struct {
 		Timeout int    `yaml:"timeout"`
 	} `yaml:"server"`
 	DB struct {
-		Address  string `yaml:"dbAddress"`
-		Port     string `yaml:"dbPort"`
-		Username string `yaml:"dbUsername"`
-		Password string `yaml:"dbpasswor"`
+		Address  string `yaml:"address"`
+		Username string `yaml:"username"`
+		Password string `yaml:"password"`
 	} `yaml:"db"`
 }
 
@@ -28,7 +26,7 @@ func ReadNewConfig(configPath string) (*Config, error) {
 	config := &Config{}
 	file, err := ioutil.ReadFile(configPath)
 	if err != nil {
-		return nil, ErrFileRead
+		return nil, err
 	}
 	if err := yaml.Unmarshal(file, config); err != nil {
 		return nil, ErrDecodeYAML

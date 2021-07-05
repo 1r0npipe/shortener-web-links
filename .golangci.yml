@@ -1,9 +1,9 @@
 # настройки запуска
 run:
   # значение конкурентности устанавливаем по количеству CPU
-  concurrency: 4
+  concurrency: 8
   # анализ не должен превышать
-  timeout: 1m
+  timeout: 2m
   # выводить "exit-code" при наличии хотя бы одного сообщения
   issues-exit-code: 1
   # не включать анализ тестов
@@ -11,15 +11,11 @@ run:
   # Пропускать папки вендора, сторонних зависимостей и т.д.
   # vendor$, third_party$, testdata$, examples$, Godeps$, builtin$
   skip-dirs-use-default: true
-  # Пропускать файлы, заканчивающиеся на .bad.go
-  skip-files:
-  - ".*\\.bad\\.go$"
-  # список линтеров
 linters:
   disable-all: true
   enable:
   - gofmt # форматирование кода (пробелы, отступы, скобки)
-  #- goimports # обновление списка imports
+  - goimports # обновление списка imports
   - govet # общий анализ возможных багов
   - goconst # нахождение строк, которые следует вынести в константы
   - funlen # детектирование слишком крупных функций
@@ -27,11 +23,10 @@ linters:
   - errcheck # проверка на обработку всех ошибок
   - deadcode # детектирование не использованного кода
   - exportloopref # детектирование экспорта указателя на переменную внутри цикла
-  # настройки отдельных линтеров
 linters-settings:
-  #goimports:
+  goimports:
     # указываем префикс локальных импортов, они будут группироваться
-    #local-prefixes: path/to/module
+    local-prefixes: path/to/module
   govet:
     # проверка на использование переменных «в тени»
     check-shadowing: true

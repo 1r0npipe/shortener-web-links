@@ -1,7 +1,9 @@
 package handler
 
 import (
+	"fmt"
 	"net/http"
+	"net/url"
 	"sync/atomic"
 
 	"github.com/1r0npipe/shortener-web-links/internal/generator"
@@ -110,7 +112,8 @@ func RedirectByShortUrl(c *gin.Context) {
 		})
 		return
 	}
-	c.Redirect(http.StatusTemporaryRedirect, m.FullLink)
+	location := url.URL{Path: "http://" + m.FullLink}
+	c.Redirect(http.StatusFound, location.RequestURI())
 	c.Abort()
 }
 
